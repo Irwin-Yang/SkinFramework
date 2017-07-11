@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/ListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/ListBG"
+        android:divider="@color/dividerColor"
+        android:dividerHeight="@dimen/divider"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"></ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="@string/hello_world"
+            android:textColor="@color/TextColor"
+            android:textSize="@dimen/GreetSize" />
+
+
+        <Button
+            android:layout_weight="1"
+            android:id="@+id/BTN_Restore"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/textbg"
+            android:text="@string/BTN_Restore"
+            android:textSize="20dp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</LinearLayout>

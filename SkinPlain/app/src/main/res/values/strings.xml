@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SkinPlain</string>
+
+    <string name="hello_world">Hi,我是Plain皮肤.</string>
+    <string name="action_settings">Settings</string>
+    <string name="BTN_Restore">恢复默认皮肤（Plain）</string>
+    <string name="BTN_ScanSkin">扫描皮肤（Plain）</string>
+    <string name="Tips_UnsupportedSkin">不支持的皮肤（Plain）</string>
+</resources>

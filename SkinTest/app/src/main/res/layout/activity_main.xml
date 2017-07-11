@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/hello_world"
+        android:textSize="@dimen/GreetSize" />
+
+    <ListView
+        android:id="@+id/ListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/ListBG"
+        android:divider="@color/dividerColor"
+        android:dividerHeight="@dimen/divider"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:divider="#E5E5E5"
+        android:orientation="vertical"
+        android:showDividers="middle">
+
+        <Button
+            android:id="@+id/BTN_Restore"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:onClick="onClick"
+            android:text="@string/BTN_Restore"
+            android:textSize="20dp"
+            tools:visibility="visible"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/BTN_FragmentTest"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:onClick="onClick"
+            android:text="@string/BTN_Fragment"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+</LinearLayout>

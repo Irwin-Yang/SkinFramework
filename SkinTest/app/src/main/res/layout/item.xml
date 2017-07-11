@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Item"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/id_iv_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/left_menu_icon"
+        android:tag="skin:left_menu_icon:src" />
+
+    <TextView
+        android:id="@+id/id_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/id_iv_icon"
+        android:tag="skin:item_text_color:textColor"
+        android:text="玩Android"
+        android:textColor="@color/item_text_color" />
+
+
+</RelativeLayout>

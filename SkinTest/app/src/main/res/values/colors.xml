@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="menu_item_text_color">#ffffffff</color>
+    <color name="item_text_color">#ff000000</color>
+
+    <color name="TextColor">#28FF28</color>
+    <color name="ListBG">#FFFF37</color>
+    <color name="dividerColor">#9D9D9D</color>
+
+
+</resources>

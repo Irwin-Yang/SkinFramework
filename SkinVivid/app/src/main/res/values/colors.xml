@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="item_text_color">#8600FF</color>
+
+    <color name="TextColor">#28FF28</color>
+    <color name="ListBG">	#B9B9FF</color>
+    <color name="dividerColor">#D0D0D0</color>
+
+
+</resources>
