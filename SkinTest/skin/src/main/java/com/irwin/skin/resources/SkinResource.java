@@ -7,7 +7,6 @@ import android.content.res.Resources;
 import android.support.annotation.LayoutRes;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -33,6 +32,8 @@ public class SkinResource extends BaseSkinResources {
 
     private String mPackageName;
 
+    private String mAppPackageName;
+
     private synchronized int generateId() {
         return ID_TRACKER++;
     }
@@ -57,6 +58,7 @@ public class SkinResource extends BaseSkinResources {
         super(assets, metrics, config);
         setAppResource(context.getResources());
         mPackageName = packageName;
+        mAppPackageName = context.getPackageName();
     }
 
 
@@ -65,7 +67,7 @@ public class SkinResource extends BaseSkinResources {
         try {
             Context skinContext = new SkinThemeContext(context);
             View v = LayoutInflater.from(skinContext).inflate(resId, null);
-            handleLayout(skinContext, v);
+            handleView(skinContext, v);
             return v;
         } catch (Exception e) {
 
@@ -78,22 +80,19 @@ public class SkinResource extends BaseSkinResources {
         return mPackageName;
     }
 
-    protected void handleLayout(Context context, View v) {
-        buildInflateRules(context, v);
-    }
-
 
     /**
-     * Map ids to which app can recognize locally.
+     * Handle view to support used by app.
      *
      * @param v View resource from skin package.
      */
-    public void buildInflateRules(Context context, View v) {
+    public void handleView(Context context, View v) {
         resetID();
         //Id map: Key as skin id and Value as local id.
         SparseIntArray array = new SparseIntArray();
         buildIdRules(context, v, array);
         int size = array.size();
+        // Map ids to which app can recognize locally.
         for (int i = 0; i < size; i++) {
             //Map id defined in skin package into real id in app.
             v.findViewById(array.keyAt(i)).setId(array.valueAt(i));
@@ -154,33 +153,26 @@ public class SkinResource extends BaseSkinResources {
     }
 
     /**
-     * @param resId
+     * Get correspond resource id in skin archive.
+     *
+     * @param resId Resource id in app.
      * @return 0 if not exist
      */
     public int getCorrespondResId(int resId) {
         Resources appResources = getAppResources();
         String resName = appResources.getResourceName(resId);
         if (!TextUtils.isEmpty(resName)) {
-            String skinName = resName.replace("com.dyy.skintest", getPackageName());
+            String skinName = resName.replace(mAppPackageName, getPackageName());
             int id = getIdentifier(skinName, null, null);
-            String value = null;
-            if(skinName.contains("BTN_Restore"))
-            {
-                if (id > 0) {
-                    value = getText(id).toString();
-                }
-            }
-            Log.i("Resources", "skin name: " + skinName + "  id: " + id + " value: " + value);
             return id;
         }
         return 0;
-
-//        String resType = appResources.getResourceTypeName(resId);
-//        String resName = appResources.getResourceEntryName(resId);
-//        return getIdentifier(resName, resType, getPackageName());
     }
 
 
+    /**
+     * Context implementation for skin package.
+     */
     private class SkinThemeContext extends ContextThemeWrapper {
         private WeakReference<Context> mContextRef;
 
@@ -199,7 +191,11 @@ public class SkinResource extends BaseSkinResources {
             setTheme(themeRes);
         }
 
-
+        /**
+         * This implementation will support <code>onClick</code> attribute of view in xml.
+         *
+         * @param v
+         */
         public void onClick(View v) {
             Context context = mContextRef == null ? null : mContextRef.get();
             if (context == null) {

@@ -1,5 +1,6 @@
 package com.irwin.skin;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
@@ -117,7 +118,6 @@ public abstract class SkinnableFragment extends Fragment implements ISkinnable {
      * @param savedState State value returned by {@link #saveState()}
      */
     protected void restoreState(Bundle savedState) {
-
     }
 
 
