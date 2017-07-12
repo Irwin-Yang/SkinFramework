@@ -6,13 +6,15 @@ Sample picture:
 ![](https://raw.githubusercontent.com/Zeal27/SkinFramework/dev/Pics/sample.gif)
 
 </br>
-How to use
+## How to use
 ----
+</br>
 To use this framework, you should clone or download sample code, import sub module called skin into you own project.
 </br>
 Then you can use the functional interfaces which SkinManager provided:
 </br>
 ```Java
+</br>
 public SkinManager initialize(Context context);//初始化皮肤管理器
 
 /**
@@ -48,12 +50,13 @@ public void restoreSkin(ISkinCallback cb) ；//恢复应用默认皮肤
  * @param cb
  */
 public void resumeSkin(ISkinCallback cb) ；//恢复当前使用的皮肤，应在应用启动界面调用。
+</br>
 
 ```
 </br>
 
-We support two approaches to change skin：
-####1.Statically(Recommended)
+### We support two approaches to change skin：
+#### 1.Statically(Recommended)
 Call changeSkin and in the callback method, close all your activity,and restart you main activity.
 ···Java
 SkinManager.getInstance().changeSkin(..,..,new ISkinCallback(0{
@@ -64,7 +67,7 @@ SkinManager.getInstance().changeSkin(..,..,new ISkinCallback(0{
    ...
 });
 
-####2.Dynamically
+#### 2.Dynamically
 Implement your activity,fragment,dialog or other UI with ISkinObserver and register them with SkinManager.register(observer),
 <br>
 then change layout and rebind view/data dynamically.See the sample code for details. This will do much work and may bother you a lot.
@@ -74,8 +77,8 @@ Both approaches should use Resources provided by SkinManager.You can choose your
 Any advice will be appreciated:D
 
 </br>
-####More information about SkinFramework:[http://www.cnblogs.com/oxgen/p/7154699.html](http://www.cnblogs.com/oxgen/p/7154699.html)
+#### More information about SkinFramework:[http://www.cnblogs.com/oxgen/p/7154699.html](http://www.cnblogs.com/oxgen/p/7154699.html)
 </br>
-####Email:zhpngyang52@gmail.com
+#### Email:zhpngyang52@gmail.com
 
 
