@@ -43,7 +43,7 @@ public class SkinManager {
 
     }
 
-    public SkinManager init(Context context) {
+    public SkinManager initialize(Context context) {
         //Avoid initialize multiple times.
         if (mContext != null) {
             return this;
@@ -55,6 +55,10 @@ public class SkinManager {
     }
 
 
+    /**
+     * Register an observer to be informed of skin changed for ui interface such as activity,fragment, dialog etc.
+     * @param observer
+     */
     public void register(ISkinObserver observer) {
         if (observer != null) {
             synchronized (mObservers) {
@@ -81,6 +85,12 @@ public class SkinManager {
         }
     }
 
+    /**
+     * Change skin.
+     * @param skinPath Path of skin archive.
+     * @param pkgName Package name of skin archive.
+     * @param cb Callback to be informed of skin-changing event.
+     */
     public void changeSkin(String skinPath, String pkgName, ISkinCallback cb) {
         if (isSameSkin(skinPath, pkgName)) {
             if (cb != null) {
@@ -104,10 +114,10 @@ public class SkinManager {
     }
 
     /**
-     * @param skinPath
-     * @param pkgName
-     * @param check
-     * @param cb       If need to check the existence、validation of the skin.
+     * @param skinPath Path of skin archive.
+     * @param pkgName Package name of skin archive.
+     * @param check If need to check the existence、validation of the skin.
+     * @param cb  Callback to be informed of skin-changing event.
      */
     private void doChangeSkin(String skinPath, String pkgName, boolean check, ISkinCallback cb) {
         new SkinLoaderTask(skinPath, pkgName, cb, check).execute();
@@ -116,9 +126,9 @@ public class SkinManager {
     /**
      * Tell if same skin, skinPath and pkgName must not be null at the same time.
      *
-     * @param skinPath
-     * @param pkgName
-     * @return
+     * @param skinPath  Path of skin archive.
+     * @param pkgName   Package name of skin archive.
+     * @return true if is the same skin, false otherwise.
      */
     public boolean isSameSkin(String skinPath, String pkgName) {
         boolean invalidPath = TextUtils.isEmpty(skinPath);
@@ -153,7 +163,11 @@ public class SkinManager {
         return new String[]{skinPath, skinPkg};
     }
 
-
+    /**
+     * Save information of skin currently used.
+     * @param skinPath Path of skin archive.
+     * @param skinPkg Package name of skin archive.
+     */
     private void saveCurrentSkin(String skinPath, String skinPkg) {
         SkinStorage storage = SkinStorage.getInstance();
         storage.putApply(SkinStorage.KEY_SKIN_PATH, TextUtils.isEmpty(skinPath) ? "" : skinPath);
@@ -161,10 +175,10 @@ public class SkinManager {
     }
 
     /**
-     * @param skinPath
-     * @param pkgName
+     * @param skinPath Path of skin archive.
+     * @param pkgName  Package name of skin archive.
      * @param check    If need to check the existence、validation of the skin.
-     * @param cb
+     * @param cb   Callback to be informed of skin-changing event.
      * @return An array consists of skin path at [0] and skin package at [1], or null if no skin used.
      * @throws NoSuchMethodException
      * @throws InstantiationException
@@ -189,8 +203,8 @@ public class SkinManager {
     /**
      * Process skin.
      *
-     * @param skinPath
-     * @param pkgName
+     * @param skinPath Path of skin archive.
+     * @param pkgName Package name of skin archive.
      * @return An array consists of skin path at [0] and skin package at [1], or null if no skin used.
      * @throws IOException
      */
@@ -209,7 +223,6 @@ public class SkinManager {
         if (!new File(realSkinPath).exists()) {
             deleteObsoleteSkins();
             SkinUtils.copyFile(new File(skinPath), new File(realSkinPath), null);
-
         }
         return new String[]{
                 realSkinPath, pkgName
@@ -245,7 +258,7 @@ public class SkinManager {
     /**
      * Get package archive info.This will cost >=500ms.
      *
-     * @param skinPath
+     * @param skinPath Path of skin archive.
      * @return
      */
     private PackageInfo getPackageInfo(String skinPath) {
@@ -311,6 +324,10 @@ public class SkinManager {
         }
     }
 
+    /**
+     * Get resources.
+     * @return
+     */
     public BaseResources getResources() {
         return mComposedResources;
     }

@@ -37,7 +37,7 @@ import com.irwin.skin.resources.BaseResources;
 import java.io.InputStream;
 
 /**
- * Created by ARES on 2017/7/5.
+ * Created by ARES on 2016/5/20.
  * This is a resources class consists of App default skin and external skin resources if exists. We will find resource in external skin resources first,then the default.
  * Assume all resources ids are original  so that we should find corresponding resources ids in skin .
  */

@@ -20,11 +20,16 @@ public abstract class SkinnableActivity extends AppCompatActivity implements ISk
 
     private View mContentView;
     private int mLayoutId = -1;
+    private boolean mUseSkinResource = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         registerSkinCallback();
+    }
+
+    public void setUseSkinResources(boolean use) {
+        mUseSkinResource = use;
     }
 
     protected void registerSkinCallback() {
@@ -78,6 +83,13 @@ public abstract class SkinnableActivity extends AppCompatActivity implements ISk
 
     @Override
     public Resources getResources() {
+        if (mUseSkinResource) {
+            return getSkinResources();
+        }
+        return super.getResources();
+    }
+
+    public BaseResources getSkinResources() {
         return SkinManager.getInstance().getResources();
     }
 
