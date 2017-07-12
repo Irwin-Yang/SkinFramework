@@ -14,22 +14,26 @@ To use this framework, you should clone or download sample code, import sub modu
 Then you can use the functional interfaces which SkinManager provided:
 
 </br>
-
+```Java
 public SkinManager initialize(Context context);//初始化皮肤管理器
-
+```
+```Java
 /**
  * Register an observer to be informed of skin changed for ui interface such as activity,fragment, dialog etc.
  * @param observer
  */
 public void register(ISkinObserver observer)；//注册换肤监听器，用于需要动态换肤的场景。
+```
 
+```Java
 /**
  * Get resources.
  * @return
  */
 public BaseResources getResources()；//获取资源
+````
 
-
+```Java
 /**
  * Change skin.
  * @param skinPath Path of skin archive.
@@ -37,14 +41,16 @@ public BaseResources getResources()；//获取资源
  * @param cb Callback to be informed of skin-changing event.
  */
 public void changeSkin(String skinPath, String pkgName, ISkinCallback cb)；//更换皮肤
+```
 
+```Java
 /**
  * Restore skin to app default skin.
  *
  * @param cb
  */
-  </br>
 public void restoreSkin(ISkinCallback cb) ；//恢复应用默认皮肤
+```
 
 ```Java
 /**
@@ -53,7 +59,6 @@ public void restoreSkin(ISkinCallback cb) ；//恢复应用默认皮肤
  * @param cb
  */
 public void resumeSkin(ISkinCallback cb) ；//恢复当前使用的皮肤，应在应用启动界面调用。
-</br>
 ```
 
 </br>
