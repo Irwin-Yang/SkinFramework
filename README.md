@@ -9,7 +9,7 @@ Sample picture:
 
 ## How to use
 </br>
-To use this framework, you should clone or download sample code, import sub module called skin into you own project.Then you can use
+To use this framework, you should clone or download sample code, import sub module called skin into your own project.Then you can use
  the functional interfaces which SkinManager provided:
 </br>
 
